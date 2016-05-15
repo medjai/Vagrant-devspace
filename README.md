@@ -1,4 +1,4 @@
-#DevSpace Vagrant
+# DevSpace Vagrant
 
 DevSpace Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers which also includes many related modern development tools.
 
