@@ -38,7 +38,7 @@ The following dependencies are installed using apt-get as they are required to i
 ### Install via Git
 To use DevSpace vagrant, clone this github repo 
 
-    $ git clone https://github.com/arifulhb/devspace.git
+    $ git clone http://git.wisenetdev.com:medjai/devspace
 to your mac/pc/linux.  When clone is complete, go to the `devspace` and now you are ready to use your Virtual Machine.
 
 ### Use
@@ -70,7 +70,3 @@ These are credentials setup by default.
 - Password: root
 - Host: localhost
 - Port: 3306
-
- 
-### Disclaimer
-This vagrantfile and provision is only tested in Mac.
