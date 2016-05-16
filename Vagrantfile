@@ -1,5 +1,22 @@
 
 Vagrant.configure(2) do |config|
+  # Configuration for vagrant plugin hostmanager
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = false
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+  
+  # Actual hostname and address configuration
+  config.vm.define 'wisenetdev' do |node|
+    # Create Hostname
+    node.vm.hostname = 'wisenetdev'
+    # Assign Static Address
+    node.vm.network "private_network", ip: "192.168.33.10"
+    # Create address for this host
+    node.hostmaanger.aliases = %w(wisenetdev.lan)
+
+  end
 
   # Specify the base box
   config.vm.box = "ubuntu/trusty64"
@@ -8,7 +25,8 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
   # Setup network
-  config.vm.network "private_network", ip: "192.168.33.10"
+  #private network provissioned above for hostmanager purpose
+  #config.vm.network "private_network", ip: "192.168.33.10"
 
   # Setup synced folder
     config.vm.synced_folder "projects/", "/var/www/html", group: "www-data", owner: "vagrant", :mount_options => ['dmode=775', 'fmode=775']
@@ -16,10 +34,14 @@ Vagrant.configure(2) do |config|
   # CUSTOMIZATION
    config.vm.provider "virtualbox" do |vb|
 
+  # Allowing internet access
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+
      vb.name = "devspace"
   
      # Customize the amount of memory on the VM:
-     vb.memory = "1024"
+     vb.memory = "2048"
      vb.cpus = 1
    end
 
