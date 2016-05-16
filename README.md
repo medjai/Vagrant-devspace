@@ -1,7 +1,53 @@
 # DevSpace Vagrant
 
 DevSpace Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers which also includes many related modern development tools.
+## Vagrant Host Manager
+https://github.com/devopsgroup-io/vagrant-hostmanager
 
+Installation
+------------
+Install the plugin following the typical Vagrant 1.1 procedure:
+
+    $ vagrant plugin install vagrant-hostmanager
+
+To update the host's `/etc/hosts` file, set the `hostmanager.manage_host`
+attribute to `true`.
+
+Example configuration:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+  config.vm.define 'example-box' do |node|
+    node.vm.hostname = 'example-box-hostname'
+    node.vm.network :private_network, ip: '192.168.42.42'
+    node.hostmanager.aliases = %w(example-box.localdomain example-box-alias)
+  end
+end
+```
+Windows support
+---------------
+
+Hostmanager will detect Windows guests and hosts and use the appropriate
+path for the ```hosts``` file: ```%WINDIR%\System32\drivers\etc\hosts```
+
+By default on a Windows host, the ```hosts``` file is not writable without
+elevated privileges. If hostmanager detects that it cannot overwrite the file,
+it will attempt to do so with elevated privileges, causing the
+[UAC](http://en.wikipedia.org/wiki/User_Account_Control) prompt to appear.
+
+To avoid the UAC prompt, open ```%WINDIR%\System32\drivers\etc\``` in
+Explorer, right-click the hosts file, go to Properties > Security > Edit
+and give your user Modify permission.
+
+### UAC limitations
+
+Due to limitations caused by UAC, cancelling out of the UAC prompt will not cause any
+visible errors, however the ```hosts``` file will not be updated.
 
 # Overview
 This vagrant use [ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trusty64) from [Atlas Vagrant Box](https://atlas.hashicorp.com/boxes/search?utm_source=vagrantcloud.com&vagrantcloud=1).
