@@ -17,7 +17,7 @@ sudo apt-get install apache2 -y --force-yes > /dev/null
 # PHP
 echo "Updating PHP repository"
 sudo apt-get install python-software-properties -y --force-yes > /dev/null
-sudo add-apt-repository ppa:ondrej/php5-oldstable -y --force-yes > /dev/null
+sudo add-apt-repository ppa:ondrej/php5-oldstable -y > /dev/null
 sudo apt-get update > /dev/null
 sudo apt-get install -y --force-yes php5 > /dev/null
 
@@ -25,7 +25,7 @@ sudo apt-get install -y --force-yes php5 > /dev/null
 sudo apt-get install php5-common php5-dev php5-cli php5-fpm -y --force-yes > /dev/null
 
 #echo "Installing PHP extensions"
-sudo apt-get install curl php5-curl php5-gd php5-mcrypt php5-mysql php5-xdebug php5-memcached php5-memcache php5-sqlite php5-json php5-xmlrpc php5-geoip -y --force-yes > /dev/null
+sudo apt-get install curl php5-curl php5-gd php5-mcrypt php5-mysql php5-xdebug php5-memcached php5-memcache php5-sqlite php5-json php5-xmlrpc php5-geoip php5-mbstring php5-dom -y --force-yes > /dev/null
 
 echo "Creating xdebug log directory: /var/log/xdebug"
 sudo mkdir /var/log/xdebug > /dev/null
@@ -77,7 +77,7 @@ echo "Installing Bower"
 sudo npm install bower -g > /dev/null
 
 echo "Installing Gulp"
-sudo npm install Gulp -g > /dev/null
+sudo npm install gulp -g > /dev/null
 
 
 echo "Finished provisioning."

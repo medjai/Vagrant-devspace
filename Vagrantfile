@@ -13,8 +13,9 @@ Vagrant.configure(2) do |config|
     node.vm.hostname = 'wisenetdev'
     # Assign Static Address
     node.vm.network "private_network", ip: "192.168.33.10"
+    #node.vm.network "private_network", ip: "dhcp"	
     # Create address for this host
-    node.hostmanger.aliases = %w(wisenetdev.lan)
+    node.hostmanager.aliases = %w(wisenetdev.lan)
 
   end
 
