@@ -1,4 +1,4 @@
-# DevSpace Vagrant
+# Laravel Optimized Vagrant
 
 DevSpace Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers which also includes many related modern development tools.
 ## Vagrant Host Manager
@@ -98,7 +98,7 @@ First time of your 'vagrant up' will provision the vagrant. You can see the stat
 You can check the `phpinfo` from  [http://192.168.33.10/phpinfo.php](http://192.168.33.10/phpinfo.php)
 
 ### Requirements
-You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org)installed in your pc.
+You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org) installed in your pc.
 
 
 # Default Credentials
