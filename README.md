@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.manage_guest = true
   config.hostmanager.ignore_private_ip = false
-  config.hostmanager.include_offline = true
+  config.hostmanager.include_offline = false
   config.vm.define 'example-box' do |node|
     node.vm.hostname = 'example-box-hostname'
     node.vm.network :private_network, ip: '192.168.42.42'
@@ -62,13 +62,14 @@ This vagrant box is configured to use '1024mb' of RAM and 1 Cpu. You can change 
 
 - Ubuntu Trusty64 (64-Bit)
 - Apache 2
-- PHP _v5.6.7_ with mysql, mcrypt, memcached, memcache, sqlite, xmlrpc, geoip gd, xdebug, php5-fpm, php5-common
-- MySQL _v5.5.41_
+- PHP _v5.5.9_ with mysql, mcrypt, memcached, memcache, sqlite, xmlrpc, geoip gd, xdebug, php5-fpm, php5-common
+- MySQL _v5.5.49_
 - Git _v1.9.1_
-- Node _v0.10.38_
-- Composer _v1.0.0-alpha9_
-- NPM _v1.4.28_
-- Bower _v1.3.12_
+- Node _v0.10.25_
+- Composer _v1.1.1 2016-05-17_
+- NPM _v1.3.10_
+- Bower _v1.7.9_
+- Gulp _v3.9.1_
 
 ### Included Dependencies
 The following dependencies are installed using apt-get as they are required to install and build other modules:
