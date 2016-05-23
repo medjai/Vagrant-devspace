@@ -83,12 +83,18 @@ sudo apt-get install -y --force-yes npm > /dev/null
 
 #Installing NodeJS-Legacy (Needed to make bower and gulp work as standalone commands)
 echo "Installing NodeJS-Legacy"
-sudo apt-get install -y --force -yes nodejs-legacy > /dev/null
+sudo apt-get install -y --force-yes nodejs-legacy > /dev/null
 
 echo "Installing Bower"
 sudo npm install -g bower > /dev/null
 
 echo "Installing Gulp"
 sudo npm install -g gulp > /dev/null
+
+echo "Copying .bashrc with composer bin path to vagrant user home"
+cp /var/www/config/.bashrc  /home/vagrant/.bashrc > /dev/null
+
+echo "Globally requiring laravel installer via composer"
+composer global require "laravel/installer"
 
 echo "Finished provisioning."
