@@ -10,12 +10,12 @@ Vagrant.configure(2) do |config|
   # Actual hostname and address configuration
   config.vm.define 'wisenetdev' do |node|
     # Create Hostname
-    node.vm.hostname = 'wisenetdev'
+    node.vm.hostname = 'laravel'
     # Assign Static Address
     node.vm.network "private_network", ip: "192.168.33.10"
     #node.vm.network "private_network", ip: "dhcp"	
     # Create address for this host
-    node.hostmanager.aliases = %w(wisenetdev.lan)
+    node.hostmanager.aliases = %w(laravel.lan)
 
   end
 
