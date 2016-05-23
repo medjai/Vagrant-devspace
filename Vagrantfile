@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
   config.hostmanager.include_offline = false
   
   # Actual hostname and address configuration
-  config.vm.define 'wisenetdev' do |node|
+  config.vm.define 'Laravel' do |node|
     # Create Hostname
     node.vm.hostname = 'laravel'
     # Assign Static Address
