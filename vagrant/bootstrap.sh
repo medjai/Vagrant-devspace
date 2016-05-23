@@ -81,5 +81,8 @@ sudo npm install bower -g > /dev/null
 echo "Installing Gulp"
 sudo npm install gulp -g > /dev/null
 
+echo "Enabling Mod re-write on Apache"
+sudo a2enmod rewrite > /dev/null
+sudo service apache2 restart
 
 echo "Finished provisioning."
