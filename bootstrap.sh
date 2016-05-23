@@ -81,10 +81,14 @@ sudo apt-get install -y --force-yes nodejs > /dev/null
 sudo apt-get install -y --force-yes npm > /dev/null
 #sudo npm install npm -g
 
+#Installing NodeJS-Legacy (Needed to make bower and gulp work as standalone commands)
+echo "Installing NodeJS-Legacy"
+sudo apt-get install -y --force -yes nodejs-legacy > /dev/null
+
 echo "Installing Bower"
-sudo npm install bower -g > /dev/null
+sudo npm install -g bower > /dev/null
 
 echo "Installing Gulp"
-sudo npm install gulp -g > /dev/null
+sudo npm install -g gulp > /dev/null
 
 echo "Finished provisioning."
