@@ -29,13 +29,15 @@ sudo apt-get install curl php5-curl php5-gd php5-mcrypt php5-mysql php5-xdebug p
 
 echo "Creating xdebug log directory: /var/log/xdebug"
 sudo mkdir /var/log/xdebug > /dev/null
+
 echo "Changing xdebug log directory owner to www-data"
 sudo chown www-data:www-data /var/log/xdebug > /dev/null
 
 echo "Installing xdebug"
 sudo pecl install xdebug > /dev/null
+
 echo "Configuring xdebug"
-sudo cp /var/www/html/config/php.ini /etc/php5/apache2/php.ini > /dev/null
+sudo cp /var/www/config/php.ini /etc/php5/apache2/php.ini > /dev/null
 sudo service apache2 restart > /dev/null
 echo "Xdebug installation completeted"
 
@@ -53,9 +55,13 @@ sudo apt-get install -y --force-yes mysql-client > /dev/null
 
 # Apache Configuration
 echo "Configuring Apache"
-cp /var/www/html/config/servername.conf /etc/apache2/conf-available/servername.conf > /dev/null
+cp /var/www/config/servername.conf /etc/apache2/conf-available/servername.conf > /dev/null
 sudo a2enconf servername > /dev/null
-cp /var/www/html/config/dir.conf /etc/apache2/mods-enabled/dir.conf > /dev/null
+cp /var/www/config/dir.conf /etc/apache2/mods-enabled/dir.conf > /dev/null
+echo "Updating Apache vhost for Laravel Projects"
+cp /var/www/config/000-default.conf /etc/apache2/sites-enabled/000-default.conf > /dev/null
+echo "Enabling Mod re-write on Apache"
+sudo a2enmod rewrite > /dev/null
 sudo service apache2 restart > /dev/null
 
 # Install Git
@@ -80,9 +86,5 @@ sudo npm install bower -g > /dev/null
 
 echo "Installing Gulp"
 sudo npm install gulp -g > /dev/null
-
-echo "Enabling Mod re-write on Apache"
-sudo a2enmod rewrite > /dev/null
-sudo service apache2 restart
 
 echo "Finished provisioning."
