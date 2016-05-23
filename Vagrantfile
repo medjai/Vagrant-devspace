@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
 
   # Setup synced folder
     config.vm.synced_folder "www/", "/var/www/html", group: "www-data", owner: "vagrant", :mount_options => ['dmode=775', 'fmode=775']
-    config.vm.synced_folder "projects/config", "/var/www/config", group: "www-data", owner: "vagrant", :mount_options => ['dmode=775', 'fmode=775']
+    config.vm.synced_folder "config/", "/var/www/config", group: "www-data", owner: "vagrant", :mount_options => ['dmode=775', 'fmode=775']
 
 
 
@@ -54,7 +54,7 @@ Vagrant.configure(2) do |config|
   # config.vm.provision :shell, path: “vagrant/bootstrap.sh"
    # Shell provisioning
     config.vm.provision "shell" do |s|
-      s.path = "vagrant/bootstrap.sh"
+      s.path = "bootstrap.sh"
     end
   
   # View the documentation for the provider you are using for more
