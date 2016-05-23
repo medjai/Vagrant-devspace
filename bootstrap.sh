@@ -94,7 +94,7 @@ sudo npm install -g gulp > /dev/null
 echo "Copying .bashrc with composer bin path to vagrant user home"
 cp /var/www/config/.bashrc  /home/vagrant/.bashrc > /dev/null
 
-echo "Globally requiring laravel installer via composer"
-composer global require "laravel/installer"
+echo "Globally requiring laravel installer via composer for vagrant user"
+sudo -H -u vagrant bash -c 'composer global require "laravel/installer"'
 
 echo "Finished provisioning."

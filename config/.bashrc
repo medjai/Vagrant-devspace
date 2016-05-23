@@ -113,4 +113,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH="/home/vagrant/.config/composer/vendor/bin:$PATH"
+PATH="/home/vagrant/.composer/vendor/bin:$PATH"
