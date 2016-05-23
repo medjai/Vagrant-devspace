@@ -68,6 +68,7 @@ echo "Installing Composer"
 #sudo mv composer.phar /usr/local/bin/composer > /dev/null
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin 
 --filename=composer
+sudo mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
 # Installing Node
 echo "Installing Node"
