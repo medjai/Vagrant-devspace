@@ -1,8 +1,9 @@
-# Laravel Optimized Vagrant
+# Laravel Vagrant
 
-DevSpace Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers which also includes many related modern development tools.
-## Vagrant Host Manager
-https://github.com/devopsgroup-io/vagrant-hostmanager
+Laravel Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers which also includes many related modern development tools.
+
+## [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager)
+Vagrant hostmanager is a plugin used to automatically create host entries across OSX, Linux, and Windows (please see attached notes below for windows)
 
 Installation
 ------------
@@ -65,7 +66,7 @@ This vagrant box is configured to use '1024mb' of RAM and 1 Cpu. You can change 
 - PHP _v5.5.9_ with mysql, mcrypt, memcached, memcache, sqlite, xmlrpc, geoip gd, xdebug, php5-fpm, php5-common
 - MySQL _v5.5.49_
 - Git _v1.9.1_
-- Node _v0.10.25_
+- Node _v0.10.25_ (NodeJS Legacy as well)
 - Composer _v1.1.1 2016-05-17_
 - NPM _v1.3.10_
 - Bower _v1.7.9_
@@ -91,11 +92,10 @@ to your mac/pc/linux.  When clone is complete, go to the `devspace` and now you 
 ### Use
 Start the VM
 
-    $ cd /devspace
+    $ cd /vagrant
     $ vagrant up
 
-First time of your 'vagrant up' will provision the vagrant. You can see the status of your VM from [http://192.168.33.10](http://192.168.33.10).
-You can check the `phpinfo` from  [http://192.168.33.10/phpinfo.php](http://192.168.33.10/phpinfo.php)
+First time of your 'vagrant up' will provision the vagrant. You can then feel free to import a git repository or start a new project from your _*www*_ folder
 
 ### Requirements
 You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org) installed in your pc.
