@@ -66,9 +66,7 @@ sudo apt-get install git -y --force-yes > /dev/null
 echo "Installing Composer"
 #sudo curl -sS https://getcomposer.org/installer | php > /dev/null
 #sudo mv composer.phar /usr/local/bin/composer > /dev/null
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin 
---filename=composer
-sudo mv /usr/local/bin/composer.phar /usr/local/bin/composer
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer > /dev/null
 
 # Installing Node
 echo "Installing Node"
