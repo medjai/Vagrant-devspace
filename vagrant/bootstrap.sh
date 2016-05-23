@@ -64,14 +64,17 @@ sudo apt-get install git -y --force-yes > /dev/null
 
 # Installing Composer
 echo "Installing Composer"
-sudo curl -sS https://getcomposer.org/installer | php > /dev/null
-sudo mv composer.phar /usr/local/bin/composer > /dev/null
+#sudo curl -sS https://getcomposer.org/installer | php > /dev/null
+#sudo mv composer.phar /usr/local/bin/composer > /dev/null
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin 
+--filename=composer
 
 # Installing Node
 echo "Installing Node"
-sudo curl -sL https://deb.nodesource.com/setup | sudo bash - > /dev/null
-sudo sudo apt-get install -y --force-yes nodejs > /dev/null
-sudo npm install npm -g
+#sudo curl -sL https://deb.nodesource.com/setup | sudo bash - > /dev/null
+sudo apt-get install -y --force-yes nodejs > /dev/null
+sudo apt-get install -y --force-yes npm > /dev/null
+#sudo npm install npm -g
 
 echo "Installing Bower"
 sudo npm install bower -g > /dev/null
