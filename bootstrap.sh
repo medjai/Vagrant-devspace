@@ -25,7 +25,7 @@ sudo apt-get install -y --force-yes php5 > /dev/null
 sudo apt-get install php5-common php5-dev php5-cli php5-fpm -y --force-yes > /dev/null
 
 #echo "Installing PHP extensions"
-sudo apt-get install curl php5-curl php5-gd php5-mcrypt php5-mysql php5-xdebug php5-memcached php5-memcache php5-sqlite php5-json php5-xmlrpc php5-geoip php5-mbstring php5-dom -y --force-yes > /dev/null
+sudo apt-get install curl php5-curl php5-gd php5-mcrypt php5-mysql php5-xdebug php5-memcached php5-memcache php5-sqlite php5-json php5-xmlrpc php5-geoip -y --force-yes > /dev/null
 
 echo "Creating xdebug log directory: /var/log/xdebug"
 sudo mkdir /var/log/xdebug > /dev/null
