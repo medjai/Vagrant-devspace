@@ -52,6 +52,10 @@ sudo apt-get install mysql-server-5.5 -y --force-yes > /dev/null
 sudo apt-get install mysql-server -y --force-yes -f > /dev/null
 sudo apt-get install -y --force-yes mysql-client > /dev/null
 
+echo "Configuring MySQL"
+sudo cp /var/www/config/my.cnf /etc/mysql/my.cnf > /dev/null
+sudo service mysql restart > /dev/null
+
 
 # Apache Configuration
 echo "Configuring Apache"
