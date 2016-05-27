@@ -117,3 +117,4 @@ These are credentials setup by default.
 - Password: root
 - Host: localhost
 - Port: 3306
+` Note: you can externally connect to MySQL from your host as it is listening on 0.0.0.0 just be sure to edit the DB to allow root user to enter from anywhere not just localhost or 127.0.0.1`
