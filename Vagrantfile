@@ -4,7 +4,6 @@ require 'yaml'
 settings = YAML.load_file 'config.yml'
 vm_host_name = settings['vm']['host_name']
 vm_ip_address = settings['vm']['ip_address']
-vm_domain_name = settings['vm']['domain_name']
 vm_name = settings['vm']['name']
 vm_memory = settings['vm']['memory']
 vm_cpu_cores = settings['vm']['cpu_cores']
@@ -23,9 +22,6 @@ Vagrant.configure(2) do |config|
     node.vm.hostname = vm_host_name
     # Assign Static Address
     node.vm.network "private_network", ip: vm_ip_address
-    # Create address for this host
-    node.hostmanager.aliases = %w(vm_domain_name)
-
   end
 
   # Specify the base box

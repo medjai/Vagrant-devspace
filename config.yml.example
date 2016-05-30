@@ -1,7 +1,6 @@
 vm:
-  host_name = laravel
-  ip_address = 192.168.33.11
-  domain_name = laravel.lan
-  name = laravel-VM
-  memory = 2048
-  cpu_cores = 2
+  host_name: laravel.lan
+  ip_address: 192.168.33.11
+  name: "Laravel"
+  memory: 2048
+  cpu_cores: 2
