@@ -2,17 +2,16 @@
 
 Laravel Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers which also includes many related modern development tools.
 
-## [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager)
+# [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager)
 Vagrant hostmanager is a plugin used to automatically create host entries across OSX, Linux, and Windows (please see attached notes below for windows)
 
-Installation
+## Vagrant Host Manager Installation
 ------------
 Install the plugin following the typical Vagrant 1.1 procedure:
 
     $ vagrant plugin install vagrant-hostmanager
 
-To update the host's `/etc/hosts` file, set the `hostmanager.manage_host`
-attribute to `true`.
+To update the host's `/etc/hosts` file, set the `hostmanager.manage_host` attribute to `true`.
 
 Example configuration:
 
@@ -50,6 +49,21 @@ and give your user Modify permission.
 Due to limitations caused by UAC, cancelling out of the UAC prompt will not cause any
 visible errors, however the ```hosts``` file will not be updated.
 
+# Configuration Pre-requesites
+Configuration for Vagrant box has been simplified by using a `config.yml`. Just simply copy `config.yml.example` and edit the required fields.
+
+## Example config.yml
+```yaml 
+vm:
+  host_name: laravel.lan
+  ip_address: 192.168.33.11
+  name: "Laravel Test Project"
+  memory: 2048
+  cpu_cores: 2
+  http_port: 8080 #if port conflicts with another VM vagrant file has been configured to re-configure to another port
+  mysql_port: 3333  #if port conflicts with another VM vagrant file has been configured to re-configure to another port
+```
+
 # Overview
 This vagrant use [ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trusty64) from [Atlas Vagrant Box](https://atlas.hashicorp.com/boxes/search?utm_source=vagrantcloud.com&vagrantcloud=1).
   On your 'vagrant up' command, this vagrantfile will automatically download the box. Vagrant folder here contain a `bootstrap.sh` file which provision the vagrant box.
@@ -84,18 +98,19 @@ The following dependencies are installed using apt-get as they are required to i
 # Installation
 
 ### Install via Git
-To use DevSpace vagrant, clone this github repo 
+To use Laravel Vagrant, clone this github repo 
 
     $ git clone http://git.wisenetdev.com:medjai/vagrant.git
-to your mac/pc/linux.  When clone is complete, go to the `devspace` and now you are ready to use your Virtual Machine.
 
-### Use
+to your mac/pc/linux.  When clone is complete, go to the `vagrant` folder and now you are ready to use your VM.
+
+# Usage
 Start the VM
 
     $ cd /vagrant
     $ vagrant up
 
-First time of your 'vagrant up' will provision the vagrant. You can then feel free to import a git repository or start a new project from your _*www*_ folder
+First time you 'vagrant up' it will provision the VM. At the end of provisioning you will find a laravel instance already installed in the _*www*_ folder
 
 ### Requirements
 You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org) installed in your pc.
@@ -105,7 +120,7 @@ You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtu
 These are credentials setup by default.
 
 ## Host Address:
-- Hose: 192.168.33.10 (Change in Vagrantfile if you like)
+- Hose: 192.168.33.11 (Change in Vagrantfile if you like)
  
 ## SSH
 - Username: vagrant
