@@ -1,56 +1,17 @@
 # Laravel Vagrant
 
-Laravel Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers which also includes many related modern development tools.
+Laravel Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers and includes modern development tools. Vagrant hostmanager is a plugin used to automatically create host entries across OSX, Linux, and Windows (please see attached notes below for windows)
 
-# [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager)
-Vagrant hostmanager is a plugin used to automatically create host entries across OSX, Linux, and Windows (please see attached notes below for windows)
+# 
 
-## Vagrant Host Manager Installation
-------------
-Install the plugin following the typical Vagrant 1.1 procedure:
-
-    $ vagrant plugin install vagrant-hostmanager
-
-To update the host's `/etc/hosts` file, set the `hostmanager.manage_host` attribute to `true`.
-
-Example configuration:
-
-```ruby
-Vagrant.configure("2") do |config|
-  config.hostmanager.enabled = true
-  config.hostmanager.manage_host = true
-  config.hostmanager.manage_guest = true
-  config.hostmanager.ignore_private_ip = false
-  config.hostmanager.include_offline = false
-  config.vm.define 'example-box' do |node|
-    node.vm.hostname = 'example-box-hostname'
-    node.vm.network :private_network, ip: '192.168.42.42'
-    node.hostmanager.aliases = %w(example-box.localdomain example-box-alias)
-  end
-end
-```
-Windows support
----------------
-
-Hostmanager will detect Windows guests and hosts and use the appropriate
-path for the ```hosts``` file: ```%WINDIR%\System32\drivers\etc\hosts```
-
-By default on a Windows host, the ```hosts``` file is not writable without
-elevated privileges. If hostmanager detects that it cannot overwrite the file,
-it will attempt to do so with elevated privileges, causing the
-[UAC](http://en.wikipedia.org/wiki/User_Account_Control) prompt to appear.
-
-To avoid the UAC prompt, open ```%WINDIR%\System32\drivers\etc\``` in
-Explorer, right-click the hosts file, go to Properties > Security > Edit
-and give your user Modify permission.
-
-### UAC limitations
-
-Due to limitations caused by UAC, cancelling out of the UAC prompt will not cause any
-visible errors, however the ```hosts``` file will not be updated.
 
 # Configuration Pre-requesites
-Configuration for Vagrant box has been simplified by using a `config.yml`. Just simply copy `config.yml.example` and edit the required fields.
+1. Install [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager) This is used to auto configure your host file when you spin up a VM
+* $ vagrant plugin install vagrant-hostmanager
+** Windows Users: To avoid the UAC prompt, open ```%WINDIR%\System32\drivers\etc\``` in Explorer, right-click the hosts file, go to Properties > Security > Edit and give your user Modify permission.
+*** Due to limitations caused by UAC, cancelling out of the UAC prompt will not cause any
+visible errors, HOWEVER the ```hosts``` file will NOT be updated!
+2. Configuration for Vagrant box has been simplified by using a `config.yml`. Just simply copy `config.yml.example` and edit the required fields.
 
 ## Example config.yml
 ```yaml 
