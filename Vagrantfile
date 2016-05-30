@@ -28,7 +28,8 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
   # Setup port forwarding
-  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+  config.vm.network "forwarded_port", guest: 80, host: rand(3000) + 1024, auto_correct: true
+  config.vm.network "forwarded_port", guest: 3306, host: rand(3000) + 1024, auto_correct: true
 
   # Setup synced folder
     config.vm.synced_folder "www/", "/var/www/html", group: "www-data", owner: "vagrant", :mount_options => ['dmode=775', 'fmode=775']
