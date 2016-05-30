@@ -1,12 +1,20 @@
 #Load settings from yaml config file
 require 'yaml'
 
-settings = YAML.load_file 'config.yml'
-vm_host_name = settings['vm']['host_name']
-vm_ip_address = settings['vm']['ip_address']
-vm_name = settings['vm']['name']
-vm_memory = settings['vm']['memory']
-vm_cpu_cores = settings['vm']['cpu_cores']
+#Check to see if config.yml exists if not copy it and stop boot process
+if not File.exists?('config.yml')
+  FileUtils.cp('config.yml.example', 'config.yml')
+  abort("You did not copy and configure config.yml! Please do so now!")
+else
+ settings = YAML.load_file 'config.yml'
+ vm_host_name = settings['vm']['host_name']
+ vm_ip_address = settings['vm']['ip_address']
+ vm_name = settings['vm']['name']
+ vm_memory = settings['vm']['memory']
+ vm_cpu_cores = settings['vm']['cpu_cores']
+ vm_http_port = settings['vm']['http_port']
+ vm_mysql_port = settings['vm']['mysql_port']
+end
 
 Vagrant.configure(2) do |config|
   # Configuration for vagrant plugin hostmanager
@@ -28,9 +36,8 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
   # Setup port forwarding
-  config.vm.network "forwarded_port", guest: 80, host: rand(3000) + 1024, auto_correct: true
-  config.vm.network "forwarded_port", guest: 3306, host: rand(3000) + 1024, auto_correct: true
-  config.vm.network "forwarded_port", guest: 22, host: rand(3000) + 1024, auto_correct: true
+  config.vm.network "forwarded_port", guest: 80, host: vm_http_port, auto_correct: true
+  config.vm.network "forwarded_port", guest: 3306, host: vm_mysql_port, auto_correct: true
   # Setup synced folder
     config.vm.synced_folder "www/", "/var/www/html", group: "www-data", owner: "vagrant", :mount_options => ['dmode=775', 'fmode=775']
     config.vm.synced_folder "config/", "/var/www/config", group: "www-data", owner: "vagrant", :mount_options => ['dmode=775', 'fmode=775']

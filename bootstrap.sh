@@ -101,8 +101,8 @@ cp /var/www/config/.profile  /home/vagrant/.profile > /dev/null
 echo "Globally requiring laravel installer via composer for vagrant user"
 sudo -H -u vagrant bash -c 'composer global require "laravel/installer"' > /dev/null
 
-echo "Creating Laravel instance in www folder"
-sudo -H -u vagrant bash -c 'cd /var/www/html && laravel new' > /dev/null
-
+echo "Deploy Laravel Project in /var/www/html"
+#sudo -i -u vagrant laravel new laravel-new && mv /home/vagrant/laravel-new/* /var/www/html/ && mv /home/vagrant/laravel-new/.[!.]* /var/www/html/ && rm -rf /home/vagrant/laravel-new/ 
+sudo -H -u vagrant bash -c 'cd /var/www/html && composer create-project laravel/laravel'
 
 echo "Finished provisioning."

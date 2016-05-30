@@ -4,3 +4,5 @@ vm:
   name: "Laravel"
   memory: 2048
   cpu_cores: 2
+  http_port: 8080
+  mysql_port: 3333
