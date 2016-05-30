@@ -95,10 +95,14 @@ sudo npm install -g bower > /dev/null
 echo "Installing Gulp"
 sudo npm install -g gulp > /dev/null
 
-echo "Copying .bashrc with composer bin path to vagrant user home"
-cp /var/www/config/.bashrc  /home/vagrant/.bashrc > /dev/null
+echo "Copying .profile with composer bin path to vagrant user home"
+cp /var/www/config/.profile  /home/vagrant/.profile > /dev/null
 
 echo "Globally requiring laravel installer via composer for vagrant user"
-sudo -H -u vagrant bash -c 'composer global require "laravel/installer"'
+sudo -H -u vagrant bash -c 'composer global require "laravel/installer"' > /dev/null
+
+echo "Creating Laravel instance in www folder"
+sudo -H -u vagrant bash -c 'cd /var/www/html && laravel new' > /dev/null
+
 
 echo "Finished provisioning."
