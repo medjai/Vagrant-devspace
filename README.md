@@ -109,7 +109,7 @@ You can now edit your `.env` file to connect to MySQL
     
 ```
 DB_CONNECTION=mysql
-DB_HOST=(change this to the host in your _config.yml_ file)
+DB_HOST=(change this to the host in your config.yml file)
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
