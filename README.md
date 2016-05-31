@@ -77,10 +77,9 @@ First time you `vagrant up` it will provision the VM. At the end of provisioning
 ## MySQL Credentials
 - Username: root
 - Password: root
-- Host: localhost
 - Port: 3306
 
-`NOTE:` You can externally connect to MySQL from your *HOST* as it is listening on 0.0.0.0`
+`NOTE:` You can externally connect to MySQL from your *HOST* as it is listening on *0.0.0.0*
 
 ### Allow MySQL root user connection from any host 
 `WARNING:`This is never to be done a production server. This is soley to easily execute `php artisan migrate` and other commands from your *HOST* during development.
