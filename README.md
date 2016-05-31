@@ -11,7 +11,7 @@ This vagrant use [ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trus
   is linked to GUEST folder `/var/www/html`.
 
 
-This vagrant box is configured to use `2048MB` of RAM and `2` CPU core. This can be changed from `config.yml`.
+This vagrant box is configured to use `2048MB` of RAM and `2` CPU cores. This can be changed from `config.yml`.
 
 ### Installation Pre-requesites
 1. [Vagrant](http://vagrantup.com) 
