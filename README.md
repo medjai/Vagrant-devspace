@@ -1,40 +1,30 @@
 # Laravel Vagrant
 
-Laravel Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers and includes modern development tools. Vagrant hostmanager is a plugin used to automatically create host entries across OSX, Linux, and Windows (please see attached notes below for windows)
+Laravel Vagrant is a simple __Ubuntu Trusty64__ vagrant configuration for LAMP stack developers and includes modern development tools. Vagrant hostmanager is a plugin 
+utilized in this project to  automatically create host entries across OSX, Linux, 
+and Windows (**Please see attached notes below for windows, extra configuration is required for promptless use**)
 
-# 
-
-
-# Configuration Pre-requesites
-1. Install [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager) This is used to auto configure your host file when you spin up a VM
-* $ vagrant plugin install vagrant-hostmanager
-** Windows Users: To avoid the UAC prompt, open ```%WINDIR%\System32\drivers\etc\``` in Explorer, right-click the hosts file, go to Properties > Security > Edit and give your user Modify permission.
-*** Due to limitations caused by UAC, cancelling out of the UAC prompt will not cause any
-visible errors, HOWEVER the ```hosts``` file will NOT be updated!
-2. Configuration for Vagrant box has been simplified by using a `config.yml`. Just simply copy `config.yml.example` and edit the required fields.
-
-## Example config.yml
-```yaml 
-vm:
-  host_name: laravel.lan
-  ip_address: 192.168.33.11
-  name: "Laravel Test Project"
-  memory: 2048
-  cpu_cores: 2
-  http_port: 8080 #if port conflicts with another VM vagrant file has been configured to re-configure to another port
-  mysql_port: 3333  #if port conflicts with another VM vagrant file has been configured to re-configure to another port
-```
-
-# Overview
+## Overview
 This vagrant use [ubuntu/trusty64](https://atlas.hashicorp.com/ubuntu/boxes/trusty64) from [Atlas Vagrant Box](https://atlas.hashicorp.com/boxes/search?utm_source=vagrantcloud.com&vagrantcloud=1).
-  On your 'vagrant up' command, this vagrantfile will automatically download the box. Vagrant folder here contain a `bootstrap.sh` file which provision the vagrant box.
-  
-  You need to place your projects in `projects` directory. This directory is synced with `/var/www/html` directory in the virtual machine. 
-  This project folder also contain a `config` folder which is used during the provisioning. 
+  On your 'vagrant up' command, this vagrantfile will automatically download the box. Project contains a `bootstrap.sh` file which provisions the vagrant box to 
+  automate the installation and configuration of packages. It will also automatically create a new laravel project in the HOST folder `www` which 
+  is linked to GUEST folder `/var/www/html`.
 
-This vagrant box is configured to use '1024mb' of RAM and 1 Cpu. You can change ths configuration from Vagrantfile.
- 
-## Included packages
+
+This vagrant box is configured to use `2048MB` of RAM and `2` CPU core. This can be changed from `config.yml`.
+
+### Installation Pre-requesites
+1. [Vagrant](http://vagrantup.com) 
+2. [VirtualBox](https://www.virtualbox.org)
+
+### Configuration Pre-requesites
+1. Install [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager). This is used to auto configure your host file when you spin up a VM.
+2. `$ vagrant plugin install vagrant-hostmanager`
+ * Windows Users: To avoid the UAC prompt, open ```%WINDIR%\System32\drivers\etc\``` in Explorer, right-click the hosts file, go to Properties > Security > Edit and give your user Modify permission.
+ * Due to limitations caused by UAC, cancelling out of the UAC prompt will not cause any
+visible errors, HOWEVER the ```hosts``` file will *NOT* be updated!
+
+### Included packages
 
 - Ubuntu Trusty64 (64-Bit)
 - Apache 2
@@ -46,42 +36,38 @@ This vagrant box is configured to use '1024mb' of RAM and 1 Cpu. You can change 
 - NPM _v1.3.10_
 - Bower _v1.7.9_
 - Gulp _v3.9.1_
-
-### Included Dependencies
-The following dependencies are installed using apt-get as they are required to install and build other modules:
-
 - cURL
 - python-software-properties
 - build-essential
 - libev-dev
 
  
-# Installation
-
-### Install via Git
-To use Laravel Vagrant, clone this github repo 
+# Usage
+Clone the git repository: 
 
     $ git clone http://git.wisenetdev.com:medjai/vagrant.git
 
-to your mac/pc/linux.  When clone is complete, go to the `vagrant` folder and now you are ready to use your VM.
+Navigate to the repository folder
 
-# Usage
-Start the VM
+    $ cd vagrant
+Copy [config.yml.example](config.yml.example) to `config.yml` and edit parameters as you wish
 
-    $ cd /vagrant
+
+    $ cp config.yml.example config.yml
+    $ nano config.yml
+
+Now you will be ready to launch the VM
+
     $ vagrant up
 
-First time you 'vagrant up' it will provision the VM. At the end of provisioning you will find a laravel instance already installed in the _*www*_ folder
+First time you `vagrant up` it will provision the VM. At the end of provisioning you will find a laravel instance already installed in the `www` folder
 
-### Requirements
-You must have [Vagrant](http://vagrantup.com) and [VirtualBox](https://www.virtualbox.org) installed in your pc.
 
 
 # Default Credentials
-These are credentials setup by default.
 
 ## Host Address:
-- Hose: 192.168.33.11 (Change in Vagrantfile if you like)
+- Host: 192.168.33.11 (Change this in `config.yml`)
  
 ## SSH
 - Username: vagrant
@@ -93,4 +79,41 @@ These are credentials setup by default.
 - Password: root
 - Host: localhost
 - Port: 3306
-` Note: you can externally connect to MySQL from your host as it is listening on 0.0.0.0 just be sure to edit the DB to allow root user to enter from anywhere not just localhost or 127.0.0.1`
+
+`NOTE:` You can externally connect to MySQL from your *HOST* as it is listening on 0.0.0.0`
+
+### Allow MySQL root user connection from any host 
+`WARNING:`This is never to be done a production server. This is soley to easily execute `php artisan migrate` and other commands from your *HOST* during development.
+
+
+    $ vagrant ssh
+    $ mysql -uroot -proot
+
+This will drop you into mysql prompt logged in as root
+
+    $mysql> use mysql;
+    $mysql> update user set `host`='%' where `user`='root' and `host`='::1';
+
+
+You should see ` Query OK, 1 row affected (0.00 sec) Rows matched: 1  Changed: 1  Warnings: 0`
+
+### Create Laravel database
+
+    $mysql> CREATE DATABASE laravel CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+`Query OK, 1 row affected (0.00 sec)`
+
+### Edit .env file for laravel
+You can now edit your `.env` file to connect to MySQL
+
+    $ nano /var/www/html/.env
+    
+```
+DB_CONNECTION=mysql
+DB_HOST=(change this to the host in your _config.yml_ file)
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=root
+
+```
