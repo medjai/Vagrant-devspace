@@ -16,6 +16,9 @@ This vagrant box is configured to use `2048MB` of RAM and `2` CPU core. This can
 ### Installation Pre-requesites
 1. [Vagrant](http://vagrantup.com) 
 2. [VirtualBox](https://www.virtualbox.org)
+3. [PHP](http://php.net/manual/en/install.php) `Optional`
+    * Used for executing commands like `php artsian migrate` from _HOST_ during development.
+    * _PHP v5.5 to match with Virtual Machine Guest version_
 
 ### Configuration Pre-requesites
 1. Install [Vagrant Host Manager] (https://github.com/devopsgroup-io/vagrant-hostmanager). This is used to auto configure your host file when you spin up a VM.
