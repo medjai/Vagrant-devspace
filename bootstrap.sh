@@ -102,7 +102,10 @@ echo "Globally requiring laravel installer via composer for vagrant user"
 sudo -H -u vagrant bash -c 'composer global require "laravel/installer"' > /dev/null
 
 echo "Delete index.html file created by apache installation"
-rm -rf /var/www/htm/index.html > /dev/null
+rm -rf /var/www/html/index.html > /dev/null
+
+echo "Delete .placeholder file that allows www folder to be tracked by git as this may cause issues with the laravel  installation"
+rm -rf /var/www/html/.placeholder
 
 echo "Deploy Laravel Project in /var/www/html"
 #sudo -i -u vagrant laravel new laravel-new && mv /home/vagrant/laravel-new/* /var/www/html/ && mv /home/vagrant/laravel-new/.[!.]* /var/www/html/ && rm -rf /home/vagrant/laravel-new/ 
